@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    Options +FollowSymLinks
+    RewriteEngine On
+
+    # Allow access to storage files
+    <FilesMatch "\.(jpg|jpeg|png|gif|svg|webp|ico|pdf)$">
+        Require all granted
+    </FilesMatch>
+
+    # Route all other requests to index.php
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
